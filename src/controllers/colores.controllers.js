@@ -4,6 +4,7 @@ import Color from "../models/Color.js";
 //CREAR COLOR - POST
 export const crearColor = async (req, res) => {
   try {
+    console.log(req.body)
     const nuevoColor = new Color(req.body); // crear instancia del modelo Color con los datos del cuerpo de la solicitud
     await nuevoColor.save(); // guardar en la base de datos
     res.status(201).json({mensaje:'Color creado correctamente.'}); // responder con el color guardado y estado 201 (creado)
@@ -21,5 +22,33 @@ export const listarColores = async (req, res) => {
   }catch(error){
     console.error(error)
     res.status(500).json({mensaje:'Ocurrió un error al intentar listar los colores'});
+  }
+}
+
+// GET color por ID
+export const obtenerColorPorId = async (req, res) => {
+  try {
+    const colorBuscado=await Color.findById(req.params.id);
+    if(!colorBuscado){
+      return res.status(404).json({mensaje:'Color no encontrado'});
+    }   
+    res.status(200).json(colorBuscado);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: 'Ocurrió un error al intentar obtener el color por ID' });
+  }
+}
+
+// DELETE color por ID 
+export const eliminarColorPorId = async (req, res) => {
+  try {
+    const colorEliminado = await Color.findByIdAndDelete(req.params.id);
+    if(!colorEliminado){
+      return res.status(404).json({mensaje:'Color no encontrado'});
+    }
+    res.status(200).json({mensaje:'Color eliminado correctamente.'});
+  }catch(error){
+    console.error(error);
+    res.status(500).json({mensaje:'Ocurrió un error al intentar eliminar el color por ID'});
   }
 }

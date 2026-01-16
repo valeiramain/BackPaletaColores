@@ -4,7 +4,7 @@ const colorSchema = new Schema(
   {
     nombre: {
       type: String,
-      minLength: 5,
+      minLength: 3,
       maxLength: 30,
       required: true,
       unique: true,
