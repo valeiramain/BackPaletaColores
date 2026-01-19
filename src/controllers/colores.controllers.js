@@ -69,6 +69,7 @@ export const eliminarColorPorId = async (req, res) => {
 export const actualizarColorPorId = async (req, res) => {
   try {
     const colorBuscado = await Color.findById(req.params.id);
+    console.log(colorBuscado);
     if (!colorBuscado) {
       return res.status(404).json({ mensaje: "Color no encontrado con el ID enviado." });
     }

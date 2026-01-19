@@ -6,17 +6,18 @@ import {
   eliminarColorPorId,
   actualizarColorPorId,
 } from "../controllers/colores.controllers.js";
+import validacionColor from "../middlewares/validacionColor.js";
 
 const router = Router();
 
 // rutas para trabajar con los colores
 
-router.route("/").post(crearColor).get(listarColores);
+router.route("/").post([validacionColor],crearColor).get(listarColores);
 
 router
   .route("/:id")
   .get(obtenerColorPorId)
   .delete(eliminarColorPorId)
-  .put(actualizarColorPorId);
+  .put([validacionColor],actualizarColorPorId);
 
 export default router;
