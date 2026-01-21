@@ -1,4 +1,4 @@
-import Color from "../models/Color.js";
+import Color from "../models/color.js";
 
 //CREAR COLOR - POST
 export const crearColor = async (req, res) => {
