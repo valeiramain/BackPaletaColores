@@ -65,8 +65,8 @@ export const eliminarColorPorId = async (req, res) => {
 };
 
 
-//PUT actualizar color por ID (opcional)
-export const actualizarColorPorId = async (req, res) => {
+//PUT editar color por ID (opcional)
+export const editarColorPorId = async (req, res) => {
   try {
     const colorBuscado = await Color.findById(req.params.id);
     console.log(colorBuscado);
