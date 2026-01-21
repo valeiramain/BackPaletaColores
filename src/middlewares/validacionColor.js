@@ -1,6 +1,6 @@
 import { body } from "express-validator";
 import resultadoValidacion from "./resultadoValidacion.js";
-import Color from "../models/Color.js";
+import Color from "../models/color.js";
 
 const validacionColor = [
   body("nombre")
